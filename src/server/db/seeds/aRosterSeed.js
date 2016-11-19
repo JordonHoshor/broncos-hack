@@ -174,7 +174,7 @@ exports.seed = function(knex, Promise) {
           team_slot: 'Bench',
           name: 'Christine Michael',
           position: 'RB',
-          nfl_team: 'Titans',
+          nfl_team: 'Packers',
           team_color_r: 255,
           team_color_g: 182,
           team_color_b: 18,
