@@ -7,7 +7,7 @@ const query = require('../db/util/util.js');
 
 router.get('/', getPlayers);
 router.get('/:id', getSinglePlayer);
-router.put('/:id', rosterUpdate);
+router.put('/:id/:id2', rosterUpdate);
 
 function getPlayers (req, res, next) {
   query.getAll('players')
@@ -40,10 +40,11 @@ function getSinglePlayer (req, res, next) {
 
 function rosterUpdate(req, res, next) {
   const id = parseInt(req.params.id);
-  query.update('players', req.body.team_slot, id)
+  const id2 = parseInt(req.params.id2);
+  query.update('players', id, id2)
   .then((results) => {
     res.status(200).json({
-      message: 'Player was updated'
+      data: results
     })
   })
   .catch((error) => {
