@@ -5,16 +5,16 @@ const indexController = require('../controllers/index');
 const query = require('../db/util/util.js');
 // const knex = require('../db/knex.js');
 
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 router.get('/', getPlayers);
 router.get('/:id', getSinglePlayer);
 router.get('/:id/:id2', rosterUpdate);
 router.get('/position/:position', getPosition);
-
-router.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 function getPlayers (req, res, next) {
   query.getAll('players')
