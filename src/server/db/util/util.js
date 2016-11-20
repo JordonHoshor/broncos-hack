@@ -8,9 +8,18 @@ function getSingle (table, id) {
   return knex(table).where('id', id).first();
 }
 
+function position(playerPosition) {
+  if(playerPosition === 'FLEX') {
+    return knex('players').where('position', 'RB').orWhere('position', 'WR').orWhere('position', 'TE').orderBy('projected_points', 'desc')
+  } else {
+    return knex('players').where('position', playerPosition).orderBy('projected_points', 'desc')
+  }
+
+}
+
 function update (table, id, id2) {
-  const player1 = knex(table).where('id', id)
-  const player2 = knex(table).where('id', id2)
+  const player1 = knex(table).where('id', id);
+  const player2 = knex(table).where('id', id2);
   return Promise.all([
     player1,
     player2
@@ -35,5 +44,5 @@ function playerSwap(player1, player2) {
 }
 
 module.exports = {
-  getAll, getSingle, update
+  getAll, getSingle, update, position
 };

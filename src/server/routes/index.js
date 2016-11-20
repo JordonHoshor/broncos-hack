@@ -8,6 +8,7 @@ const query = require('../db/util/util.js');
 router.get('/', getPlayers);
 router.get('/:id', getSinglePlayer);
 router.put('/:id/:id2', rosterUpdate);
+router.get('/position/:position', getPosition);
 
 function getPlayers (req, res, next) {
   query.getAll('players')
@@ -38,13 +39,28 @@ function getSinglePlayer (req, res, next) {
   })
 }
 
+function getPosition (req, res, next) {
+  const position = req.params.position;
+    query.position(position)
+    .then((results) => {
+      res.status(200).json({
+        data: results
+      })
+    })
+    .catch((error) => {
+      res.status(400).json({
+        message: 'Not Found'
+      })
+    })
+}
+
 function rosterUpdate(req, res, next) {
   const id = parseInt(req.params.id);
   const id2 = parseInt(req.params.id2);
   query.update('players', id, id2)
   .then((results) => {
     res.status(200).json({
-      data: results
+      data: 'Roster updated '
     })
   })
   .catch((error) => {
