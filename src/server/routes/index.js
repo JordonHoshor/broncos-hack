@@ -13,8 +13,8 @@ router.use((req, res, next) => {
 
 router.get('/', getPlayers);
 router.get('/:id', getSinglePlayer);
-router.get('/:id/:id2', rosterUpdate);
 router.get('/position/:position', getPosition);
+router.get('/:id/:id2', rosterUpdate);
 
 function getPlayers (req, res, next) {
   query.getAll('players')
@@ -66,7 +66,7 @@ function rosterUpdate(req, res, next) {
   query.update('players', id, id2)
   .then((results) => {
     res.status(200).json({
-      data: 'Roster updated '
+      data: 'Roster updated'
     })
   })
   .catch((error) => {
