@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
     table.integer('team_color_b').notNullable();
     table.string('injury_status').notNullable();
     table.integer('projected_points').notNullable();
+    table.boolean('is_racing').defaultTo(false);
   });
 };
 
