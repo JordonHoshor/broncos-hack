@@ -8,7 +8,7 @@
 
 - GET https://broncoshack.herokuapp.com/sphero/roll
 - GET https://broncoshack.herokuapp.com/sphero/roundtrip
-- GET GET https://broncoshack.herokuapp.com/sphero/:speed/:direction/:time
+- GET https://broncoshack.herokuapp.com/sphero/:speed/:direction/:time
 
 ## Inspiration
 
