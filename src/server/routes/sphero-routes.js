@@ -11,9 +11,25 @@ orb.connect(() => {
 
 router.get('/roll', rollSphero);
 router.get('/:speed/:direction/:time', raceSphero);
+router.get('/roundtrip', roundtrip);
+
+function roundtrip (req, res, next) {
+  orb.roll(75, 0);
+  setTimeout(function() {
+    orb.roll(75, 270);
+  }, 1000);
+  setTimeout(function() {
+    orb.roll(75, 180);
+  }, 2000);
+  setTimeout(function() {
+    orb.roll(75, 90);
+  }, 3000);
+};
 
 function rollSphero () {
-  return orb.roll(100, 0);
+  return setTimeout(() => {
+    orb.roll(1000, 0);
+  }, 100)
 }
 
 function raceSphero (req, res, next) {
